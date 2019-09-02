@@ -29,6 +29,13 @@ function addRecord(inputValue) {
     var remove = document.createElement('button');
     remove.classList.add('remove');
     remove.innerHTML = removeSVG;
+    remove.addEventListener('click', function () {
+        this.parentElement.parentElement.remove();
+    });
+
+
+
+
 
     buttons.appendChild(edit);
     buttons.appendChild(remove);
@@ -37,3 +44,7 @@ function addRecord(inputValue) {
     var list = document.getElementsByClassName('sleeps')[0];
     list.appendChild(item);
 };
+
+
+// Deletes related record on #remove button click
+

@@ -36,7 +36,8 @@ header input {
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     text-indent: 20px;
-    padding: 0 60px 0 0;
+    box-sizing: border-box;
+    padding-right: 70px;
     border: 0px;
     box-shadow: none;
     outline: none;
