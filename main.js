@@ -29,6 +29,7 @@ function addRecord(inputValue) {
     var remove = document.createElement('button');
     remove.classList.add('remove');
     remove.innerHTML = removeSVG;
+    // Deletes related record on #remove button click
     remove.addEventListener('click', function () {
         this.parentElement.parentElement.remove();
     });
@@ -45,6 +46,20 @@ function addRecord(inputValue) {
     list.appendChild(item);
 };
 
+document.getElementById('test').addEventListener('click', function () {
+    const yandexKey = '9aa5ebc7-818b-443c-a827-b5f829bb6412';
+    const origin = 'https://api.weather.yandex.ru/v1/forecast?lat=55.75396&lon=37.620393&extra=false';
 
-// Deletes related record on #remove button click
+    fetch('https://api.weather.yandex.ru/v1/forecast?lat=55.75396&lon=37.620393&extra=false',{
+        headers: {
+            'X-Yandex-API-Key': yandexKey,
+            'Access-Control-Allow-Origin': origin,
+        }
+    }).then(function(response) {
+        return response.json();
+    }).then(function (yandex) {
+        console.log(JSON.stringify(yandex));
+    });
+});
+
 
