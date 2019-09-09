@@ -15,8 +15,11 @@ document.getElementById('addRecord').addEventListener('click', () => {
 // Creates a new item to the records list from scratch
 function addRecord(inputValue) {
     
+    // Adds pressure and input value to the record inner Text, *TEST*
     var item = document.createElement('li');
-    item.innerText = inputValue;
+    item.innerText = inputValue + ' ' + recordsArray[0].pressure;
+    recordsArray[0].sleep = inputValue;
+    console.log('added sleep to weather object:' + ' ' + JSON.stringify(recordsArray[0]));
 
     
     var buttons = document.createElement('div');
@@ -46,6 +49,8 @@ function addRecord(inputValue) {
     list.appendChild(item);
 };
 
+
+// Get weather from yandex with #test button click
 document.getElementById('test').addEventListener('click', function () {
     const yandexKey = '9aa5ebc7-818b-443c-a827-b5f829bb6412';
     const origin = 'https://api.weather.yandex.ru/v1/forecast?lat=55.75396&lon=37.620393&extra=false';
@@ -55,11 +60,28 @@ document.getElementById('test').addEventListener('click', function () {
             'X-Yandex-API-Key': yandexKey,
             'Access-Control-Allow-Origin': origin,
         }
-    }).then(function(response) {
-        return response.json();
-    }).then(function (yandex) {
-        console.log(JSON.stringify(yandex));
+    }).then(response => response.json()
+    ).then(yandex => {
+        // Whole weather object
+        let weatherObj = JSON.parse(JSON.stringify(yandex));
+        // Atm pressure 
+        let factPressure = weatherObj.fact.pressure_mm;
+        // Normal atm at given coordinates
+        let defPressure = weatherObj.info.def_pressure_mm;
+        createRecord(factPressure);
     });
 });
 
+let recordsArray  = [];
+// creates record with atm pressure *ADD SLEEP QUALITY AND STANDART PRESSURE*
+function WeatherToken(nowPressure, sleep) {
+    this.pressure = nowPressure;
+    this.sleep = sleep;
+};
+
+function createRecord(factPressure) {
+    recordsArray.unshift(new WeatherToken(factPressure));
+    console.log(recordsArray);
+    console.log(recordsArray[0].pressure);
+}
 
