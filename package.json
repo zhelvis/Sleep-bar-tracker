@@ -1,0 +1,20 @@
+{
+  "name": "sleep-bar-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caffeineDream/Sleep-bar-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caffeineDream/Sleep-bar-tracker/issues"
+  },
+  "homepage": "https://github.com/caffeineDream/Sleep-bar-tracker#readme"
+}
