@@ -1,22 +1,17 @@
-const fs = require('fs');
-const http = require('http')
+const express = require('express');
+const app = express();
+const path = require('path');
+const router = express.Router();
 
-
-const makeServer = function (request, response) {
-    response.writeHead(200, {'Content-Type':'text/html'});
-    fs.readFile('www/index.html', null, function(error, data) {
-            response.write(data);
-        });
-
-    fs.readFile('www/style.css', null, function(error, data) {
-            response.write(data);
-        });
-}
-
-
-const server  = http.createServer(makeServer);
-
-
-server.listen(3000, () =>{
-    console.log('created at 3000');
+router.get('/', (request, response) => {
+    response.sendFile(__dirname+'/www/index.html');
 });
+
+router.get('/', (request, response) => {
+    response.sendFile(__dirname+'/www/style.css');
+});
+
+app.use('/', router);
+app.listen(process.env.port || 3000);
+
+console.log('Running at port 3000');

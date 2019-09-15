@@ -18,6 +18,8 @@
   "homepage": "https://github.com/caffeineDream/Sleep-bar-tracker#readme",
   "description": "",
   "dependencies": {
-    "file-system": "^2.2.2"
+    "express": "^4.17.1",
+    "file-system": "^2.2.2",
+    "router": "^1.3.3"
   }
 }
