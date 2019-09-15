@@ -1,10 +1,16 @@
+const fs = require('fs');
 const http = require('http')
 
 
 const makeServer = function (request, response) {
-    response.writeHead(200, {'Content-Type':'text/plain'});
-    response.write('/www/index.html');
-    response.end();
+    response.writeHead(200, {'Content-Type':'text/html'});
+    fs.readFile('www/index.html', null, function(error, data) {
+            response.write(data);
+        });
+
+    fs.readFile('www/style.css', null, function(error, data) {
+            response.write(data);
+        });
 }
 
 

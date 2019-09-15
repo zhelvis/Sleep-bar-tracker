@@ -1,7 +1,6 @@
 {
   "name": "sleep-bar-tracker",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/caffeineDream/Sleep-bar-tracker/issues"
   },
-  "homepage": "https://github.com/caffeineDream/Sleep-bar-tracker#readme"
+  "homepage": "https://github.com/caffeineDream/Sleep-bar-tracker#readme",
+  "description": "",
+  "dependencies": {
+    "file-system": "^2.2.2"
+  }
 }
