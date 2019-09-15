@@ -50,15 +50,16 @@ function addRecord(inputValue) {
 };
 
 
-// Get weather from yandex with #test button click
+// Get weather from yandex API with #test button click
 document.getElementById('test').addEventListener('click', function () {
-    const yandexKey = '9aa5ebc7-818b-443c-a827-b5f829bb6412';
+    const yandexKey = '8080807e-b853-454f-9ebf-32404a583769';
     const origin = 'https://api.weather.yandex.ru/v1/forecast?lat=55.75396&lon=37.620393&extra=false';
 
     fetch('https://api.weather.yandex.ru/v1/forecast?lat=55.75396&lon=37.620393&extra=false',{
+        mode: 'no-cors',
         headers: {
             'X-Yandex-API-Key': yandexKey,
-            'Access-Control-Allow-Origin': origin,
+            'Access-Control-Allow-Origin': '*',
         }
     }).then(response => response.json()
     ).then(yandex => {

@@ -1,17 +1,25 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const router = express.Router();
+const fs = require('fs');
 
-router.get('/', (request, response) => {
-    response.sendFile(__dirname+'/www/index.html');
+// https and CORS
+const https = require('https');
+const cors = require('cors');
+
+
+// Self-signed SSL Certificate
+const key = fs.readFileSync(__dirname + '/certs/selfsigned.key');
+const cert = fs.readFileSync(__dirname + '/certs/selfsigned.cert');
+const options = {
+    key: key,
+    cert: cert
+};
+
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'www')));
+
+const server = https.createServer(options, app);
+server.listen(3000, () => {
+    console.log("server starting on port 3000");
 });
-
-router.get('/', (request, response) => {
-    response.sendFile(__dirname+'/www/style.css');
-});
-
-app.use('/', router);
-app.listen(process.env.port || 3000);
-
-console.log('Running at port 3000');
