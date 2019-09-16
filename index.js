@@ -1,13 +1,11 @@
 const express = require("express");
 const axios = require("axios").default;
 
+const config = require("./config");
+
 const app = express();
 
 const PORT = 3000;
-
-const API =
-  "https://api.weather.yandex.ru/v1/forecast?lat=55.75396&lon=37.620393&extra=false";
-const KEY = "8080807e-b853-454f-9ebf-32404a583769";
 
 const cors = require("cors");
 
@@ -20,8 +18,8 @@ app.get("/", (req, res) => {
 
 app.get("/forecast", async (req, res) => {
   try {
-    const apiResponse = await axios.get(API, {
-      headers: { "X-Yandex-API-Key": KEY }
+    const apiResponse = await axios.get(config.weatherApi, {
+      headers: { "X-Yandex-API-Key": config.weatherApiKey }
     });
     res.send(apiResponse.data);
   } catch (e) {
@@ -29,6 +27,6 @@ app.get("/forecast", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`server starting on port ${PORT}`);
+app.listen(config.port, () => {
+  console.log(`server starting on port ${config.port}`);
 });
