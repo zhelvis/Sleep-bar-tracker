@@ -5,8 +5,6 @@ const config = require("./config");
 
 const app = express();
 
-const PORT = 3000;
-
 const cors = require("cors");
 
 app.use(cors());
